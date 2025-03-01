@@ -131,6 +131,7 @@ $$
 
 
 ### 2. Grafica de los audios
+
 ```python
     t1 = np.linspace(0, len(micro1) / fs1, len(micro1))
     fig = plt.figure(figsize=(10, 5)) 
@@ -156,6 +157,8 @@ $$
     plt.ylabel("Amplitud digital (int16)") 
     plt.grid()
 ```
+El código genera y muestra las gráficas de las señales de audio captadas por los tres micrófonos. Para cada micrófono, se crea un vector de tiempo (t1, t2, t3) usando np.linspace(0, duración, número de muestras), donde la duración se obtiene dividiendo la cantidad de muestras (len(microX)) por la frecuencia de muestreo (fsX). Esto permite representar la señal en el dominio del tiempo. Luego, plt.plot() grafica cada señal
+
 <p align="center">
     <img src="https://github.com/user-attachments/assets/e01e61e9-b2b7-4b56-895d-7daac9d08063" alt="image" width="450">
 </p>
@@ -167,9 +170,6 @@ $$
 <p align="center">
     <img src="https://github.com/user-attachments/assets/8bb660e4-c995-426c-b580-9b63b38cfe7a" alt="image" width="450">
 </p>
-
-
-El código genera y muestra las gráficas de las señales de audio captadas por los tres micrófonos. Para cada micrófono, se crea un vector de tiempo (t1, t2, t3) usando np.linspace(0, duración, número de muestras), donde la duración se obtiene dividiendo la cantidad de muestras (len(microX)) por la frecuencia de muestreo (fsX). Esto permite representar la señal en el dominio del tiempo. Luego, plt.plot() grafica cada señal
 
 ---
 ## Análisis Espectral
