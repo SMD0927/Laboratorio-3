@@ -202,6 +202,10 @@ Este código genera y muestra el espectro de frecuencias de la señal micro1. Se
     <img src="https://github.com/user-attachments/assets/372acc0f-31f2-4673-8322-478f1fa41777" alt="image" width="450">
 </p>
 
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/50bf3a22-1849-4a08-8e24-7cd5f565cc73" alt="image" width="450">
+</p>
+
 
 
 
