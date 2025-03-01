@@ -28,7 +28,7 @@ A lo largo de este experimento,  se evaluará el impacto de la disposición espa
 
 ---
 
-## Importacion de audios y ruidos 
+## Importación de audios y ruidos 
 ```python
 fs1, micro1 = wavfile.read("audioana.wav")
 fsr1, ruido1 = wavfile.read("ruidoana.wav")
