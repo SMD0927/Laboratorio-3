@@ -199,16 +199,9 @@ plt.show()
 ```
 
 <p align="center">
-    <img src="https://github.com/user-attachments/assets/2d6e6627-0a52-4e5a-80dc-5114d79baa31" alt="image" width="450">
+    <img src="https://github.com/user-attachments/assets/4a7379c0-e8c2-40e0-a272-6a4b1e2ed4e9" alt="Imagen de WhatsApp" width="450">
 </p>
 
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/372acc0f-31f2-4673-8322-478f1fa41777" alt="image" width="450">
-</p>
-
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/50bf3a22-1849-4a08-8e24-7cd5f565cc73" alt="image" width="450">
-</p>
 
 
 
