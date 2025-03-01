@@ -183,6 +183,9 @@ spectro = np.abs(np.fft.fft(micro1)) / len(micro1)
 Este código realiza un análisis de frecuencia de una señal de audio utilizando la Transformada Rápida de Fourier (FFT). Primero, con np.fft.fftfreq(len(micro1), 1/fs1), se generan las frecuencias correspondientes a cada componente de la FFT, donde len(micro1) es el número de muestras de la señal y 1/fs1 es el periodo de muestreo, determinado por la frecuencia de muestreo fs1. Luego, con np.fft.fft(micro1), se calcula la FFT de la señal micro1, transformándola del dominio del tiempo al dominio de la frecuencia. Posteriormente, se obtiene la magnitud del espectro con np.abs(...), descartando la información de fase, y finalmente, se normaliza dividiendo entre len(micro1). Como resultado, se obtiene el espectro de frecuencias de la señal, lo que permite analizar su contenido en términos de amplitud y frecuencia.
 
 ### 2. Graficas
+
+Este código genera y muestra el espectro de frecuencias de la señal micro1. Se grafica la mitad del espectro positivo con plt.plot(...), usando la frecuencia en el eje X y la amplitud normalizada en el eje Y. Cabe mencionar que es solo de la transformada de un señal, pero en el codigo se calculan la transformada de cada una de las tres señales grabadas.
+
 ```python
 fig = plt.figure(figsize=(8, 4)) 
 plt.plot(frecuencias[:len(micro1)//2], spectro[:len(micro1)//2],color='y')
@@ -192,7 +195,6 @@ plt.ylabel("Amplitud Normalizada")
 plt.grid()
 plt.show()
 ```
-Este código genera y muestra el espectro de frecuencias de la señal micro1. Se grafica la mitad del espectro positivo con plt.plot(...), usando la frecuencia en el eje X y la amplitud normalizada en el eje Y. Cabe mencionar que es solo de la transformada de un señal, pero en el codigo se calculan la transformada de cada una de las tres señales grabadas
 
 <p align="center">
     <img src="https://github.com/user-attachments/assets/2d6e6627-0a52-4e5a-80dc-5114d79baa31" alt="image" width="450">
