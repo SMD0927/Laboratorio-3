@@ -104,6 +104,31 @@ El código define una función llamada reproducir_audio que toma un archivo de a
 ```
 El código calcula y muestra la media y la varianza de los datos de los tres micrófonos (micro1, micro2 y micro3). Usa np.mean() para obtener la media y np.var(..., ddof=1) para la varianza muestral. Los resultados se redondean a tres o cuatro decimales antes de imprimirse.
 
+$$
+\mu_{mic1} = -0.025
+$$
+
+$$
+\sigma^2_{mic1} = 16,529,446
+$$
+
+$$
+\mu_{mic2} = -0.001
+$$
+
+$$
+\sigma^2_{mic2} = 426,058
+$$
+
+$$
+\mu_{mic3} = -0.003
+$$
+
+$$
+\sigma^2_{mic3} = 6,089,800
+$$
+
+
 
 ### 2. Grafica de los audios
 ```python
