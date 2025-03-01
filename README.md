@@ -138,8 +138,7 @@ El código genera y muestra las gráficas de las señales de audio captadas por 
 ----
 ## Conclusión
 
-- La comparación entre correlación y convolución resaltó que la correlación mide la similitud sin invertir la señal, mostrando la independencia entre señales senoidales y cosenoidales.
-- El análisis de señales EMG en los dominios de tiempo y frecuencia nos permite caracterizar su comportamiento, y la DFT es crucial para identificar las distribuciones de frecuencia y potencia dominantes.
+
 
 ----
 ## Bibliografias
