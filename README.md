@@ -265,8 +265,8 @@ Explicación de por qué la separación podría no funcionar como se esperaba:
 - La calidad de la separación mejora cuando las mezclas tienen perfiles espaciales o espectrales diferenciados. Si estos perfiles son muy similares, incluso ajustando parámetros como n_components, whiten (por defecto 'unit-variance') y fun (por ejemplo, 'logcosh'), la asignación de componentes a cada voz puede volverse inexacta, lo que resulta en una separación deficiente de las fuentes.
 ----
 ## Conclusión
-
-
+En este laboratorio se intentó abordar el problema de la "fiesta de cóctel" aplicando técnicas de procesamiento digital de señales, como el cálculo de SNR, análisis temporal y espectral, y la separación de voces mediante FastICA. A pesar de realizar un preprocesamiento de las señales y ajustar los parámetros de los filtros, los resultados obtenidos no fueron los esperados. Las señales capturadas por los micrófonos resultaron ser demasiado similares y con una SNR baja, lo que dificultó la aplicación efectiva de FastICA para extraer componentes independientes que representaran cada voz de manera clara.
+Estos resultados indican que, en las condiciones actuales de grabación, la técnica empleada y el preprocesamiento realizado no fueron suficientes para lograr una separación adecuada de las fuentes sonoras. Por ello, se sugiere revisar la calidad y la disposición de los micrófonos, optimizar el preprocesamiento (por ejemplo, utilizando técnicas más avanzadas de eliminación de ruido) y considerar la implementación de métodos alternativos,
 
 ----
 ## Bibliografias
