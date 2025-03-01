@@ -15,8 +15,7 @@ pip install wfdb numpy matplotlib seaborn
 ```
 ----
 ## Introducción
-
------
+El problema de la "fiesta de cóctel" es un fenómeno estudiado en procesamiento de señales que hace referencia a la capacidad de un sistema para concentrarse en una sola fuente sonora mientras filtra las demás en un entorno con múltiples emisores de sonido. Este problema es de gran relevancia en aplicaciones de mejora de la inteligibilidad del habla, reconocimiento automático de voz y cancelación de interferencias acústicas en entornos ruidosos.
 
 ## Convolución
 La convolución es una operación matemática que combina dos funciones para describir la superposición entre ambas. La convolución toma dos funciones, “desliza” una sobre la otra, multiplica los valores de las funciones en todos los puntos de superposición, y suma los productos para crear una nueva función. Este proceso crea una nueva función que representa cómo interactúan las dos funciones originales entre sí.
