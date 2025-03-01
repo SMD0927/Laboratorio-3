@@ -16,6 +16,7 @@ pip install wfdb numpy matplotlib seaborn
 ----
 ## Introducción
 El problema de la "fiesta de cóctel" es un fenómeno estudiado en procesamiento de señales que hace referencia a la capacidad de un sistema para concentrarse en una sola fuente sonora mientras filtra las demás en un entorno con múltiples emisores de sonido. Este problema es de gran relevancia en aplicaciones de mejora de la inteligibilidad del habla, reconocimiento automático de voz y cancelación de interferencias acústicas en entornos ruidosos.
+
 En este laboratorio, mediante un arreglo de  tres micrófonos estrategicamente distribuidos en el espacio se capturarán tres señales de voz. Estas señales adquiridas se analizarán de manera espectral utilizando transformada de Fourier discreta (DFT) o la transformada rápida de Fourier (FFT), describiendo la información que se puede obtener con cada una de ellas. Además, se implementarán técnicas previamente investigadas de separación de señales como el Análisis de Componentes Independientes (ICA) o el Beamforming con el objetivo de aislar la señal de interés a partir de las señales capturadas por los micrófonos. 
 
 
