@@ -264,8 +264,11 @@ Estos resultados indican que, en las condiciones actuales de grabación, la téc
 ----
 ## Bibliografias
 [1] https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.FastICA.html
+
 [2] https://scikit-learn.org/stable/auto_examples/decomposition/plot_ica_blind_source_separation.html
+
 [3] https://help.nchsoftware.com/help/es/wavepad/win/frequencyanalysis.html
+
 [4] https://www.nch.com.au/wavepad/es/index.html?ref=https%3A%2F%2Fwww.google.com%2F&refdate=1740794071
 
 ----
