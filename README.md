@@ -62,17 +62,17 @@ $$
 
 Finalmente, se imprimen los valores de SNR redondeados a tres decimales para cada micrófono.
 
-\begin{equation}
+$$
 SNR_{mic1} = 8.148 \text{ dB}
-\end{equation}
+$$
 
-\begin{equation}
+$$
 SNR_{mic2} = 14.267 \text{ dB}
-\end{equation}
+$$
 
-\begin{equation}
+$$
 SNR_{mic3} = 8.39 \text{ dB}
-\end{equation}
+$$
 
 
 ### 2. Reproducción de los audios
