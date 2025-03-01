@@ -25,334 +25,124 @@ A lo largo de este experimento,  se evaluará el impacto de la disposición espa
 
 ---
 
-## Convolución
-La convolución es una operación matemática que combina dos funciones para describir la superposición entre ambas. La convolución toma dos funciones, “desliza” una sobre la otra, multiplica los valores de las funciones en todos los puntos de superposición, y suma los productos para crear una nueva función. Este proceso crea una nueva función que representa cómo interactúan las dos funciones originales entre sí.
-La convolución se utiliza en el procesamiento digital de señales para estudiar y diseñar sistemas lineales de tiempo invariante (LTI), como los filtros digitales.
-La señal de salida de un sistema LTI,y[n], es la convolución de la señal de entrada x[n] y la respuesta al impulso h[n] del sistema.[1]
-### Fórmula de la convolución discreta:
-
-$$
-y[n] = \sum_{k=0}^{M-1} x[k] h[n-k]
-$$
-
-Donde:
-
-- \(y[n]\) es la señal de salida.
-- \(x[k]\) es la señal de entrada.
-- \(h[n-k]\) es la respuesta al impulso del sistema desplazada en el tiempo.
-- \(M\) es la longitud de la señal de entrada.
-
-### 1. Convolución entre la señal x[n] y del sistema h[n]
+## Importacion de audios y ruidos 
 ```python
-h = [5,6,0,0,7,7,5]
-x = [1,0,1,4,6,6,0,7,0,8]
-y = np.convolve(x,h,mode='full')
-print('h[n] =', h)
-print('x[n] =',x)
-print('y[n] =',y)
+fs1, micro1 = wavfile.read("audioana.wav")
+fsr1, ruido1 = wavfile.read("ruidoana.wav")
+
+fs2, micro2 = wavfile.read("Audiosantiago.wav")
+fsr2, ruido2 = wavfile.read("ruidosantiago.wav")
+
+fs3, micro3 = wavfile.read("audiosamuel.wav")
+fsr3, ruido3 = wavfile.read("ruidosamuel.wav")
 ```
-$$
-h[n] = \begin{bmatrix}
-5 & 6 & 0 & 0 & 7 & 7 & 5
-\end{bmatrix}
-$$
+Este código lee archivos de audio en formato WAV utilizando wavfile.read de scipy.io.wavfile. Y se cargan dos archivos: uno con la señal de las voces (micro) y otro con el ruido ambiental (ruido), junto con sus respectivas frecuencias de muestreo (fs y fsr).
 
-$$
-x[n] = \begin{bmatrix}
-1 & 0 & 1 & 4 & 6 & 6 & 0 & 7 & 0 & 8
-\end{bmatrix}
-$$
-
-$$
-y[n] = \begin{bmatrix}
-5 & 6 & 5 & 26 & 61 & 73 & 48 & 70 & 117 & 144 & 120 & 79 & 49 & 91 & 56 & 40
-\end{bmatrix}
-$$
-
-Este código en Python calcula la convolución discreta entre dos señales utilizando la función np.convolve() de NumPy. Primero, se definen dos listas, h y x, que representan la respuesta al impulso de un sistema y una señal de entrada, respectivamente. Luego, se aplica la convolución entre estas dos señales usando np.convolve(x, h, mode='full'), lo que genera una nueva señal y cuya longitud es la suma de las longitudes de x y h menos uno. La convolución es una operación fundamental en procesamiento de señales, ya que permite analizar cómo una señal se ve afectada por un sistema. Finalmente, el código imprime las señales h, x y y para visualizar los datos y el resultado de la convolución.
-
----
-
-### 2. Grafico de la señal x[n] y del sistema h[n]
+### 1. Calculo Del SNR
 ```python
-fig = plt.figure(figsize=(10, 5)) 
-plt.plot(h,color='g')
-plt.stem(range(len(h)), h)
-plt.title("Sistema (santiago)")  
-plt.xlabel("(n)") 
-plt.ylabel("h [n]") 
-plt.grid()
-```
-
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/b400a6c8-f58f-4757-a74c-ed36a19d3d59" alt="imagen" width="450">
-</p>
-
-```python
-fig = plt.figure(figsize=(10, 5)) 
-plt.plot(x,color='g')
-plt.stem(range(len(x)), x)
-plt.title("Señal (santiago)")  
-plt.xlabel("(n)") 
-plt.ylabel("x [n]") 
-plt.grid()  
-```
-
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/fa6848b8-bb89-4478-9399-7f6207653284" alt="imagen" width="450">
-</p>
-
-Este código genera dos gráficos para representar la respuesta al impulso h[n] y la señal de entrada x[n]. Para cada una, se crea una figura de 10x5 y se trazan dos representaciones: una línea verde (plt.plot()) y un gráfico de tipo stem (plt.stem()) para resaltar los valores discretos.
-
----
-
-### 3. Grafico de la convolución
-```python
-fig = plt.figure(figsize=(10, 5)) 
-plt.plot(y,color='g')
-plt.title("Señal Resultante (santiago)")  
-plt.xlabel("(n)") 
-plt.ylabel("y [n]") 
-plt.grid() 
-plt.stem(range(len(y)), y)
-```
-
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/030a2690-8be0-4fd6-bf8f-c76ff7ca80f9" alt="imagen" width="450">
-</p>
-
-
-
-Este fragmento de código genera un gráfico de la señal resultante y[n], que es el resultado de la convolución entre x[n] y h[n]. Se traza la señal con una línea verde usando plt.plot(y, color='g'). Luego, se superpone un gráfico de tipo stem con plt.stem(range(len(y)), y), resaltando los valores discretos de la señal.
-
----
-
-
-## Correlación
-La correlación en señales mide estadísticamente cómo dos señales varían de manera conjunta, evaluando su similitud o relación lineal. Es clave en el procesamiento de señales, ya que permite analizar sincronización, patrones y dependencias entre flujos de datos o formas de onda. Prácticamente, se usa para detectar similitudes, identificar patrones, filtrar ruido y extraer información relevante.[2]
-### Fórmula de la correlación cruzada:
-
-$$
-R_{xy}[n] = \sum_{k=-\infty}^{\infty} x[k] y[k+n]
-$$
-
-Donde:
-- \(R_{xy}[n]\) es la correlación cruzada entre \(x\) y \(y\).
-- \(x[k]\) y \(y[k+n]\) representan las señales en diferentes desplazamientos temporales.
-
-
-### 1. Señal Cosenoidal
-```python
-Ts = 1.25e-3
-n = np.arange(0, 9) #valores enteros
-x1 = np.cos(2*np.pi*100*n*Ts)
-fig = plt.figure(figsize=(10, 5)) 
-plt.plot(n, x1, label="", color='black')
-plt.title("Señal Cosenoidal")  
-plt.xlabel("(n)") 
-plt.ylabel("x1 [nTs]") 
-plt.grid()
-plt.stem(range(len(x1)), x1)
-```
-
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/a6b5c5b2-e536-418f-9f35-36c75dd033bd" alt="imagen" width="450">
-</p>
-
-Se genera y grafica una señal cosenoidal muestreada. Primero, se define un periodo de muestreo Ts = 1.25e-3, y luego se crea un arreglo n con valores enteros de 0 a 8 usando np.arange(0, 9). La función np.arange(inicio, fin) genera una secuencia de números desde inicio hasta fin-1 con un paso de 1 por defecto. En este caso, n representa los instantes de muestreo en el dominio discreto.
-
-A partir de n, se calcula la señal x1 como un coseno de 100 Hz evaluado en los instantes n * Ts. Para la visualización, se crea una figura de tamaño 10x5, donde plt.plot(n, x1, color='black') traza la señal con una línea negra, y plt.stem(range(len(x1)), x1) resalta los valores discretos.
-
-
----
-
-### 2. Señal Senoidal
-```python
-x2 = np.sin(2*np.pi*100*n*Ts)
-fig = plt.figure(figsize=(10, 5)) 
-plt.plot(n, x2, label="", color='black')
-plt.title("Señal Senoidal")  
-plt.xlabel("(n)") 
-plt.ylabel("x2 [nTs]") 
-plt.grid()
-plt.stem(range(len(x2)), x2)
-```
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/0926d754-2336-4313-8858-af1f28e19ed2" alt="imagen" width="450">
-</p>
-
-Al igual que en la gráfica anterior, este código genera y visualiza una señal, pero en este caso es una señal senoidal en lugar de una cosenoidal. Se usa el mismo conjunto de valores n = np.arange(0, 9), generado con np.arange(), y se calcula x2 como un seno de 100 Hz evaluado en los instantes n * Ts.
-
----
-
-### 3. Correlación de las Señales y Representación Grafica
-```python
-correlacion = np.correlate(x1,x2,mode='full')
-print('Correlación =',correlacion)
-fig = plt.figure(figsize=(10, 5)) 
-plt.plot(correlacion, color='black')
-plt.stem(range(len(correlacion)), correlacion)
-plt.title("Correlación")  
-plt.xlabel("(n)") 
-plt.ylabel("R[n]") 
-plt.grid()
-```
-Se calcula y grafica la correlación cruzada entre las señales x1 y x2. La correlación mide la similitud entre dos señales a diferentes desplazamientos en el tiempo, lo que permite identificar patrones compartidos o desfases entre ellas.
-
-Primero, np.correlate(x1, x2, mode='full') computa la correlación cruzada, generando una nueva señal correlacion, cuya longitud es len(x1) + len(x2) - 1. Luego, el resultado se imprime en la consola.
-
-$$
-\text{Correlación} = \begin{bmatrix}
--2.44929360 \times 10^{-16} & -7.07106781 \times 10^{-1} & -1.50000000 & -1.41421356 \\
--1.93438661 \times 10^{-16} & 2.12132034 \times 10^{0} & 3.50000000 & 2.82842712 \\
-8.81375476 \times 10^{-17} & -2.82842712 \times 10^{0} & -3.50000000 & -2.12132034 \\
-3.82856870 \times 10^{-16} & 1.41421356 \times 10^{0} & 1.50000000 & 7.07106781 \times 10^{-1} \\
-0.00000000 \times 10^{0}
-\end{bmatrix}
-$$
-
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/c0028249-0f51-430a-bebc-44794b47bfc0" alt="imagen" width="450">
-</p>
-
-Para visualizar la correlación, se crea una figura de 10x5 donde plt.plot(correlacion, color='black') dibuja la señal con una línea negra, mientras que plt.stem(range(len(correlacion)), correlacion) resalta sus valores discretos. 
-
----
-## Transformación (Señal Electromiografica)
-### 1. Caracterizacion en Función del Tiempo 
-```python
-datos = wfdb.rdrecord('session1_participant1_gesture10_trial1') 
-t = 1500
-señal = datos.p_signal[:t, 0] 
-fs = datos.fs
-```
-Se carga una señal de electromiografía (EMG) y se extraen los primeros 1500 puntos.
-
-#### 1.1. Estadisticos Descriptivos y frecuencia de muestreo
-Se calculan los siguientes estadísticos:
-- *Media (μ):* Valor promedio de la señal.
-- *Desviación Estándar (σ):* Medida de la dispersión de los datos respecto a la media.
-- *Coeficiente de Variación (CV):* Relación entre desviación estándar y media, expresada en porcentaje.
-```python
-def caracterizacion():
-    print()
-    print()
-    media = np.mean(señal)
-    desvesta = np.std(señal)
-    print('Media de la señal:',np.round(media,6))
-    print('Desviación estándar:',np.round(desvesta,6))
-    print("Coeficiente de variación:",np.round((media/desvesta),6))
-    print('Frecuencia de muestreo:',fs,'Hz')
-    
-    fig = plt.figure(figsize=(8, 4))
-    sns.histplot(señal, kde=True, bins=30, color='black')
-    plt.hist(señal, bins=30, edgecolor='blue')
-    plt.title('Histograma de Datos')
-    plt.xlabel('datos')
-    plt.ylabel('Frecuencia')
-
-caracterizacion()
-```
-- Media de la señal: 0.000131
-- Desviación estándar: 0.071519
-- Coeficiente de variación: 0.001834
-- Frecuencia de muestreo: 2048 Hz
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/d64b9102-821a-4754-a102-2a5977baab0c" alt="imagen" width="450">
-</p>
-
-- Histograma:El histograma resultante tiene una distribución que se asemeja a una campana de Gauss, lo cual es un fuerte indicativo de una distribución normal en los datos. Esto significa que la mayoría de los valores están concentrados alrededor del promedio, mientras que las frecuencias disminuyen gradualmente hacia ambos extremos.
+def SNR(m,r):
+  potencia_señal = np.mean(m**2)
+  potencia_ruido = np.mean(r**2)
   
-#### 1.2. Grafica de Electromiografía
-```python
-fig = plt.figure(figsize=(10, 5)) 
-plt.plot(señal, color='m')
-plt.title("Electromiografía [EMG]")  
-plt.xlabel("muestras[n]") 
-plt.ylabel("voltaje [mv]") 
-plt.grid()
+  snr = 10 * np.log10(potencia_señal/potencia_ruido)
+  return snr
+
+print('SNR micrófono 1:',round(SNR(micro1,ruido1),3),'dB')
+print('SNR micrófono 2:', round(SNR(micro2,ruido2),3),'dB')
+print('SNR micrófono 2:', round(SNR(micro3,ruido3),3),'dB')
 ```
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/9ea890d5-b5b2-46e3-aaf5-dd1f556bec0b" alt="imagen" width="450">
-</p>
-
-### 2. Descripción la señal en cuanto a su clasificación 
-
-La señal electromiográfica (EMG) es el registro de la actividad eléctrica generada por los músculos esqueléticos. Se clasifica como una señal biomédica no estacionaria y altamente variable debido a factores como la activación muscular, la fatiga, la calidad de los electrodos y el ruido ambiental. Su análisis en los dominios temporal y espectral permite extraer información relevante para aplicaciones como el control de prótesis, el diagnóstico de trastornos neuromusculares y el estudio del rendimiento deportivo. En el análisis temporal, se evalúan parámetros como la amplitud y la duración de los potenciales de acción de las unidades motoras. En el análisis espectral, técnicas como la transformada de Fourier y el análisis wavelet permiten descomponer la señal y caracterizar su dinámica.[3][4]
-
-### 3. Tranformada de Fourier
-La transformada de Fourier permite convertir una señal del dominio del tiempo al dominio de la frecuencia.
-
-### Fórmula de la Transformada de Fourier Discreta (DFT):
+Este código calcula la relación señal-ruido (SNR) en decibeles (dB) para tres micrófonos. La función SNR(m, r) recibe dos arreglos NumPy: m, que representa la señal del micrófono, y r, que representa el ruido. Calcula la potencia de la señal y el ruido como la media de sus cuadrados y luego obtiene el SNR usando la fórmula.
 
 $$
-X[k] = \sum_{n=0}^{N-1} x[n] e^{-j 2 \pi k n / N}
+SNR = 10 \cdot \log_{10} \left( \frac{P_{\text{señal}}}{P_{\text{ruido}}} \right)
 $$
 
-Donde:
+Finalmente, se imprimen los valores de SNR redondeados a tres decimales para cada micrófono.
 
-- \(X[k]\) es la representación en frecuencia de la señal.
-- \(x[n]\) es la señal original en el dominio del tiempo.
-- \(N\) es el número total de muestras.
-- \(e^{-j 2 \pi k n / N}\) representa la base exponencial compleja.
-
-La DFT utiliza una suma ponderada de las muestras de la señal con bases exponenciales complejas para transformar la señal desde el tiempo hacia el dominio de la frecuencia.
-
-#### 3.1. Grafica de la transformada de fourier
-El siguiente código muestra cómo calcular y graficar la transformada de Fourier de una señal:
+### 2. Reproducción de los audios
 ```python
-N = len(señal)
-frecuencias = np.fft.fftfreq(N, 1/fs)
-transformada = np.fft.fft(señal) / N
-magnitud = (2 * np.abs(transformada[:N//2]))**2
+def reproducir_audio(audio, fs):
+    sd.play(audio, fs)
+    sd.wait()
 
-plt.figure(figsize=(10, 5))
-plt.plot(frecuencias[:N//2], np.abs(transformada[:N//2]), color='black')
-plt.title("Transformada de Fourier de la Señal")
-plt.xlabel("Frecuencia (Hz)")
-plt.ylabel("Magnitud")
-plt.grid()
-```
-- np.fft.fft: Calcula la transformada de Fourier de la señal.
-- np.fft.fftfreq: Devuelve las frecuencias correspondientes a cada componente de la transformada.
-- N//2: Se utiliza para considerar únicamente las frecuencias positivas.
-- plt.plot: Genera una gráfica de la magnitud de la transformada.
-
-Esta gráfica muestra las frecuencias presentes en la señal y su magnitud asociada.
-
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/bbd94695-07fa-475c-8b62-6d6f98bfd948" alt="imagen" width="450">
-</p>
-
-#### 3.2. Grafica de la densidad espectral
-En la práctica, para señales discretas y de duración finita, la DEP se estima utilizando la transformada de Fourier discreta (DFT). Al calcular la DFT de una señal y normalizar adecuadamente, se obtiene una estimación de su densidad espectral de potencia. Esta estimación permite identificar las frecuencias predominantes y analizar cómo se distribuye la energía de la señal en el dominio de la frecuencia.
-```python
-plt.figure(figsize=(10, 5))
-plt.plot(frecuencias[:N//2], magnitud, color='black')
-plt.xlabel('Frecuencia (Hz)')
-plt.ylabel('Potencia')
-plt.title('Densidad espectral de la señal')
-plt.grid()
-
-plt.show()
+reproducir_audio(micro1, fs1)
+reproducir_audio(micro2, fs2)
+reproducir_audio(micro3, fs3)
 ```
 
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/d5f9a88b-1baf-47e8-86c6-3f8b68610271" alt="imagen" width="450">
-</p>
+El código define una función llamada reproducir_audio que toma un archivo de audio y su frecuencia de muestreo (fs) como parámetros, reproduciéndolo con la biblioteca sounddevice. Luego, se llama a esta función tres veces para reproducir los audios micro1, micro2 y micro3 con sus respectivas frecuencias de muestreo (fs1, fs2, fs3). La función sd.wait() asegura que cada audio termine de reproducirse antes de iniciar el siguiente.
 
-- La Densidad Espectral de Potencia (DSP) mide la potencia de una señal en función de la frecuencia.[5]
-- magnitud: Representa la potencia de cada frecuencia, calculada como el cuadrado de la magnitud de la transformada de Fourier.
-Ambas gráficas son fundamentales para comprender el comportamiento de la señal en el dominio de la frecuencia. La primera da información sobre las frecuencias presentes, mientras que la segunda muestra cómo se distribuye la energía de la señal en esas frecuencias.
+---
+## Análisis Temporal 
+```python
+    print('Media micrófono 1:', round(np.mean(micro1),3))
+    print('Varianza micrófono 1:', round(np.var(micro1,ddof=1),3))
+   
+    print('Media micrófono 2:', round(np.mean(micro2),4))
+    print('Varianza micrófono 2:', round(np.var(micro2,ddof=1),3))
+   
+    print('Media micrófono 3:', round(np.mean(micro3),3))
+    print('Varianza micrófono 3:', round(np.var(micro3,ddof=1),3))
+```
+
+### 1. Calculo de varianza y media
+```python
+    print('Media micrófono 1:', round(np.mean(micro1),3))
+    print('Varianza micrófono 1:', round(np.var(micro1,ddof=1),3))
+   
+    print('Media micrófono 2:', round(np.mean(micro2),4))
+    print('Varianza micrófono 2:', round(np.var(micro2,ddof=1),3))
+   
+    print('Media micrófono 3:', round(np.mean(micro3),3))
+    print('Varianza micrófono 3:', round(np.var(micro3,ddof=1),3))
+```
+El código calcula y muestra la media y la varianza de los datos de los tres micrófonos (micro1, micro2 y micro3). Usa np.mean() para obtener la media y np.var(..., ddof=1) para la varianza muestral. Los resultados se redondean a tres o cuatro decimales antes de imprimirse.
+
+
+### 2. Grafica de los audios
+```python
+    t1 = np.linspace(0, len(micro1) / fs1, len(micro1))
+    fig = plt.figure(figsize=(10, 5)) 
+    plt.plot(t1,micro1,color='y')
+    plt.title("Señal microfono 1")  
+    plt.xlabel("tiempo [s]") 
+    plt.ylabel("Amplitud digital (int16)") 
+    plt.grid()
+    
+    t2 = np.linspace(0, len(micro2) / fs2, len(micro2))
+    fig = plt.figure(figsize=(10, 5)) 
+    plt.plot(t2,micro2,color='b')
+    plt.title("Señal microfono 2")  
+    plt.xlabel("tiempo [s]") 
+    plt.ylabel("Amplitud digital (int16)") 
+    plt.grid()
+    
+    t3 = np.linspace(0, len(micro3) / fs2, len(micro3))
+    fig = plt.figure(figsize=(10, 5)) 
+    plt.plot(t3,micro3,color='r')
+    plt.title("Señal microfono 3")  
+    plt.xlabel("tiempo [s]") 
+    plt.ylabel("Amplitud digital (int16)") 
+    plt.grid()
+```
+
+El código genera y muestra las gráficas de las señales de audio captadas por los tres micrófonos. Para cada micrófono, se crea un vector de tiempo (t1, t2, t3) usando np.linspace(0, duración, número de muestras), donde la duración se obtiene dividiendo la cantidad de muestras (len(microX)) por la frecuencia de muestreo (fsX). Esto permite representar la señal en el dominio del tiempo. Luego, plt.plot() grafica cada señal
+
+---
+## Análisis Espectral
+
+
+---
+## Separación de Voces
 
 ----
 ## Conclusión
 
-
+- La comparación entre correlación y convolución resaltó que la correlación mide la similitud sin invertir la señal, mostrando la independencia entre señales senoidales y cosenoidales.
+- El análisis de señales EMG en los dominios de tiempo y frecuencia nos permite caracterizar su comportamiento, y la DFT es crucial para identificar las distribuciones de frecuencia y potencia dominantes.
 
 ----
 ## Bibliografias
-- [1] 
 
 ----
 ## Autores 
