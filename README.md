@@ -245,21 +245,18 @@ plt.show()
         audio_filtrado = bandpass_filter(audio_filtrado, fs, lowcut=cutoff, highcut=8000, order=6)
         guardar_audio(f"voz_{nombres[i]}.wav", audio_filtrado, fs)
 ```
-Carga y normalización de audios:
-
-Se define una lista de archivos (archivos_audio) y se recogen en dos listas: una para los audios y otra para las frecuencias de muestreo (fs_list).
+ Se define una lista de archivos (archivos_audio) y se recogen en dos listas: una para los audios y otra para las frecuencias de muestreo (fs_list).
 Se recorta cada audio a la misma longitud (la mínima entre ellos) para asegurar que la matriz de mezcla sea compatible.
 Construcción de la matriz de mezcla:
-
-Se combinan los audios en una matriz 𝑋 usando np.c_[], donde cada columna representa una grabación.
+Se combinan los audios en una matriz 𝑋 usando np.c_[ ], donde cada columna representa una grabación.
 La matriz se convierte a tipo float64 para asegurar precisión en los cálculos.
 Aplicación de FastICA:
 
-Se instancia FastICA con 3 componentes y un random_state fijo para obtener resultados reproducibles.
+ Se instancia FastICA con 3 componentes y un random_state fijo para obtener resultados reproducibles.
 Se usa fit_transform sobre 𝑋 para extraer las fuentes independientes. El resultado 𝑆 es una matriz donde cada columna es una componente independiente que, idealmente, corresponde a una voz.
 Filtrado y guardado de componentes:
 
-Para cada componente extraída se aplica primero un filtro pasa altos (para eliminar frecuencias bajas) y luego un filtro pasa banda (para limitar el rango entre 300 Hz y 8000 Hz).
+ Para cada componente extraída se aplica primero un filtro pasa altos (para eliminar frecuencias bajas) y luego un filtro pasa banda (para limitar el rango entre 300 Hz y 8000 Hz).
 Finalmente, se guarda cada componente filtrada en un archivo WAV nombrado según la voz (por ejemplo, voz_Santiago.wav).
 Explicación de por qué la separación podría no funcionar como se esperaba:
 
