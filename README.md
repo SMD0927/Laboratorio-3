@@ -202,6 +202,29 @@ plt.show()
     <img src="https://github.com/user-attachments/assets/4a7379c0-e8c2-40e0-a272-6a4b1e2ed4e9" alt="Imagen de WhatsApp" width="450">
 </p>
 
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/703b10ce-4396-4898-9ce1-e7f365504332" alt="Imagen de WhatsApp" width="450">
+</p>
+
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/ebe3eeb1-0002-4d7b-91a7-fb390f150576" alt="Imagen de WhatsApp" width="450">
+</p>
+
+
+
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/ebeb8ed1-8e98-4f60-8d51-2a021dbe685b" alt="Imagen de WhatsApp" width="450">
+</p>
+
+
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/cbc29260-90ab-49e8-9080-e94cc908e145" alt="Imagen de WhatsApp" width="450">
+</p>
+
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/64246da6-c0e1-4d86-b0bd-ccc328bd3bdb" alt="Imagen de WhatsApp" width="450">
+</p>
+
 
 
 
