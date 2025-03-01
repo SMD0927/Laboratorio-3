@@ -7,6 +7,9 @@
 - Bibliotecas necesarias:
   - numpy
   - matplotlib
+  - scipy.io
+  - sounddevice
+  - FastICA
  
 ```python
 import numpy as np
@@ -74,16 +77,6 @@ El código define una función llamada reproducir_audio que toma un archivo de a
 
 ---
 ## Análisis Temporal 
-```python
-    print('Media micrófono 1:', round(np.mean(micro1),3))
-    print('Varianza micrófono 1:', round(np.var(micro1,ddof=1),3))
-   
-    print('Media micrófono 2:', round(np.mean(micro2),4))
-    print('Varianza micrófono 2:', round(np.var(micro2,ddof=1),3))
-   
-    print('Media micrófono 3:', round(np.mean(micro3),3))
-    print('Varianza micrófono 3:', round(np.var(micro3,ddof=1),3))
-```
 
 ### 1. Calculo de varianza y media
 ```python
